@@ -23,13 +23,17 @@ namespace ConsultaCEPs
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
-        {
+        { 
+          #verifica se o campo TXTCEP esta preenchido
             if (!string.IsNullOrWhiteSpace(txtCEP.Text))
             {
+            
+                #Utiliza o metodo do WEB SERVICE
                 using (var ws = new WSCorreios.AtendeClienteClient())
                 {
                     try
                     {
+                        # O TRIM é para ignorar espaços e pontos
                         var endereco = ws.consultaCEP(txtCEP.Text.Trim());
 
                         txtEstado.Text = endereco.uf;
